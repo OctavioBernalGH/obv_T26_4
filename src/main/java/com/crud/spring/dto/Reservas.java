@@ -15,10 +15,12 @@ public class Reservas {
 
 	/** Se define que el campo Id hará referencia al atributo dni */
 	@Id
+	@Column(name = "dni")
 	private String dni;
 
 	/** Se define que el campo Id hará referencia al atributo numSerie */
 	@Id
+	@Column(name = "numSerie")
 	private String numSerie;
 
 	/**

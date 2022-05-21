@@ -19,6 +19,7 @@ public class Equipos {
 
 	/** Se define que el campo Id hará referencia al atributo numSerie */
 	@Id
+	@Column(name = "numSerie")
 	private char numSerie;
 
 	/**

@@ -22,14 +22,15 @@ public class Investigadores {
 
 	/** Se define que el campo Id hará referencia al atributo dni */
 	@Id
+	@Column(name = "dni")
 	private String dni;
 
 	/**
 	 * Se define que la columna nombre_apels hace referencia al atributo nombreApels
 	 * en la clase actual.
 	 */
-	@Column(name = "nombre_apels")
-	private String nombreApels;
+	@Column(name = "nomApels")
+	private String nomApels;
 
 	/**
 	 * Se genera una relación many to one con la tabla facultad mediante la columna
@@ -59,10 +60,10 @@ public class Investigadores {
 	 * @param facultad
 	 * @param reservas
 	 */
-	public Investigadores(String dni, String nombreApels, Facultad facultad, List<Reservas> reservas) {
+	public Investigadores(String dni, String nomApels, Facultad facultad, List<Reservas> reservas) {
 		super();
 		this.dni = dni;
-		this.nombreApels = nombreApels;
+		this.nomApels = nomApels;
 		this.facultad = facultad;
 		this.reservas = reservas;
 	}
@@ -85,14 +86,14 @@ public class Investigadores {
 	 * @return the nombreApels
 	 */
 	public String getNombreApels() {
-		return nombreApels;
+		return nomApels;
 	}
 
 	/**
 	 * @param nombreApels the nombreApels to set
 	 */
-	public void setNombreApels(String nombreApels) {
-		this.nombreApels = nombreApels;
+	public void setNombreApels(String nomApels) {
+		this.nomApels = nomApels;
 	}
 
 	/**
