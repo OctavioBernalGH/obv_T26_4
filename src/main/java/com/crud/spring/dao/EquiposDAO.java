@@ -1,8 +1,10 @@
 package com.crud.spring.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import com.crud.spring.dto.Equipos;
 
+@Repository
 public interface EquiposDAO extends JpaRepository<Equipos, String> {
 
 	/**

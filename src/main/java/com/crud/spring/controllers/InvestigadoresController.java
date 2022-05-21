@@ -1,0 +1,72 @@
+package com.crud.spring.controllers;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.crud.spring.dto.Investigadores;
+import com.crud.spring.services.InvestigadoresServicesImpl;
+
+@RestController
+@RequestMapping("/aplicacion")
+
+public class InvestigadoresController {
+
+	/** Utilizamos el autowired para inyectar las dependencias */
+	@Autowired
+	InvestigadoresServicesImpl investigadoresServicesImpl;
+
+	/** Listar todos los investigadores */
+	@GetMapping("/listar/investigadores")
+	public List<Investigadores> listarInvestigadores() {
+		return investigadoresServicesImpl.listarInvestigadores();
+	}
+
+	/** Buscar un investigador por identificador */
+	@GetMapping("/buscar/investigador/{id}")
+	public Investigadores buscarInvestigadorXIdentificador(@PathVariable(name = "id") String dni) {
+		return investigadoresServicesImpl.buscarInvestigadorXIdentificador(dni);
+	}
+
+	/** Crear un nuevo investigador */
+	@PostMapping("/crear/investigador")
+	public Investigadores crearNuevoInvestigador(@RequestBody Investigadores investigadores) {
+		return investigadoresServicesImpl.crearNuevoInvestigador(investigadores);
+	}
+
+	/** Modificar un investigador existente */
+	@PutMapping("/modificar/investigador/{id}")
+	public Investigadores modificarInvestigadorExistente(@PathVariable(name = "id") String dni,
+			@RequestBody Investigadores investigadores) {
+		/** Instancia de un investigador */
+		Investigadores investigador_a_modificar = new Investigadores();
+		Investigadores modificacion = new Investigadores();
+		
+		/** Recuperar un investigador para modificar */
+		investigador_a_modificar = investigadoresServicesImpl.buscarInvestigadorXIdentificador(dni);
+		
+		/** Actualizar valores */
+		investigador_a_modificar.setDni(investigadores.getDni());
+		investigador_a_modificar.setFacultad(investigadores.getFacultad());
+		investigador_a_modificar.setNombreApels(investigadores.getNombreApels());
+		investigador_a_modificar.setReservas(investigadores.getReservas());
+		
+		/** Volcar valores actualizados */
+		modificacion = investigadoresServicesImpl.modificarInvestigadorExistente(investigador_a_modificar);
+		
+		/** Devolver el nuevo investigador */
+		return modificacion;
+	}
+
+	/** Eliminar un investigador existente */
+	@DeleteMapping("/eliminar/investigador/{id}")
+	public void Investigadores(@PathVariable(name = "id") String dni) {
+		investigadoresServicesImpl.eliminarInvestigadorExistente(dni);
+	}
+}

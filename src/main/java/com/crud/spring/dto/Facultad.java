@@ -28,7 +28,7 @@ public class Facultad {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codigo;
+	private Integer codigo;
 
 	/**
 	 * Se define que la columna nombre hace referencia al atributo nombre en la
@@ -66,7 +66,7 @@ public class Facultad {
 	 * @param investigadores
 	 * @param equipos
 	 */
-	public Facultad(Long codigo, String nombre, List<Investigadores> investigadores, List<Equipos> equipos) {
+	public Facultad(Integer codigo, String nombre, List<Investigadores> investigadores, List<Equipos> equipos) {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.investigadores = investigadores;
@@ -76,14 +76,14 @@ public class Facultad {
 	/**
 	 * @return the codigo
 	 */
-	public Long getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
 	/**
 	 * @param codigo the codigo to set
 	 */
-	public void setCodigo(Long codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 
