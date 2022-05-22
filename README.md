@@ -275,8 +275,6 @@ public class Facultad {
 
  </details>
  
-La siguiente clase a generar será Investigadores:
-
  <details>
  
  <summary>Código entidad Investigadores</summary>
@@ -452,8 +450,6 @@ public class Investigadores {
   
  </details>
 
-Para proseguir se generará la clase equipo:
-
 <details>
  
  <summary>Código entidad Equipo</summary>
@@ -618,8 +614,6 @@ public class Equipos {
 ```
  
 </details>
-
-Para finalizar el DTO se generará la última clase llamada reservas:
 
  <details>
  
@@ -846,4 +840,393 @@ public interface ReservasDAO extends JpaRepository<Reservas, Long>{
 
 ```
  
+</details>
+	
+Cuando esté finalizada la capa DTO y DAO se procederá a crear las diferentes interfaces services las cuales se implementarán en las clases que forman la capa service. Al ser poco código se mostrará todo junto en el siguiente spoiler:
+	
+<details>
+	
+  <summary>Interfaces capa Service</summary>
+	
+  <br>
+
+  ```java
+	package com.crud.spring.services;
+
+import java.util.List;
+import com.crud.spring.dto.Facultad;
+
+/** Interfaz con la plantilla de métodos */
+public interface FacultadServices {
+
+	/** Método para listar TODAS las facultades */
+	public List<Facultad> listarFacultades();
+
+	/** Método para buscar una facultad por ID */
+	public Facultad buscarFacultadXIdentificador(Long id);
+
+	/** Método para crear una nueva facultad */
+	public Facultad crearFacultad(Facultad facultad);
+
+	/** Método para modificar una facultad ya existente */
+	public Facultad modificarFacultadExistente(Facultad facultad);
+
+	/** Método para eliminar una facultad ya existente */
+	public void eliminarFacultadExistente(Long id);
+}
+
+	
+	package com.crud.spring.services;
+
+import java.util.List;
+import com.crud.spring.dto.Equipos;
+
+/** Interfaz con la plantilla de métodos */
+public interface EquiposServices {
+
+	/** Método para listar TODOS los equipos */
+	public List<Equipos> listarEquipos();
+
+	/** Método para buscar un equipo por ID */
+	public Equipos buscarEquipoXIdentificador(Long id);
+
+	/** Método para crear un nuevo equipo */
+	public Equipos crearNuevoEquipo(Equipos equipos);
+
+	/** Método para modificar un equipo ya existente */
+	public Equipos modificarEquipoExistente(Equipos equipos);
+
+	/** Método para eliminar un equipo ya existente */
+	public void eliminarEquipoExistente(Long id);
+
+}
+
+	
+	package com.crud.spring.services;
+
+import java.util.List;
+import com.crud.spring.dto.Investigadores;
+
+/** Interfaz con la plantilla de métodos */
+public interface InvestigadoresServices {
+
+	/** Método para listar TODOS los investigadores */
+	public List<Investigadores> listarInvestigadores();
+
+	/** Método para buscar un investigador por ID */
+	public Investigadores buscarInvestigadorXIdentificador(Long id);
+
+	/** Método para crear un investigador */
+	public Investigadores crearNuevoInvestigador(Investigadores investigadores);
+
+	/** Método para modificar un investigador ya existenten */
+	public Investigadores modificarInvestigadorExistente(Investigadores investigadores);
+
+	/** Método para eliminar un investigador ya existente */
+	public void eliminarInvestigadorExistente(Long id);
+}
+	
+	
+	package com.crud.spring.services;
+
+import java.util.List;
+import com.crud.spring.dto.Reservas;
+
+/** Interfaz con la plantilla de métodos */
+public interface ReservasServices {
+
+	/** Método para listas TODAS las reservas */
+	public List<Reservas> listasReservas();
+
+	/** Método para buscar una reserva por ID */
+	public Reservas buscarReservaXIdentificador(Long id);
+
+	/** Método para crear una nueva reserva */
+	public Reservas crearNuevaReserva(Reservas reservas);
+
+	/** Método para modificar una reserva existente */
+	public Reservas modificarReservaExistente(Reservas reservas);
+
+	/** Método para eliminar una reserva existente */
+	public void eliminarReservaExistente(Long id);
+
+}
+  ```
+	
+</details>
+
+A continuación se procederá a generar el código de las diferentes clases de la capa service, en este caso serán 4 clases que corresponden a las dierentes entidades:
+	
+<details>
+	
+   <summary>Códigio generado en FacultadServicesImpl</summary>
+	
+   <br>
+	
+  ```java
+package com.crud.spring.services;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.crud.spring.dao.ReservasDAO;
+import com.crud.spring.dto.Reservas;
+
+@Service
+/**
+ * Se implementan los métodos de la interfaz @FacultadServices. Se utiliza la
+ * anotación @Service para indicar que esta clase pertenece a la capa de
+ * servicios
+ */
+public class ReservasServicesImpl implements ReservasServices {
+
+	/**
+	 * Se utiliza la anotación @Autowired para inyectar las dependencias del
+	 * JpaRepository heredado en @ReservasDAO.
+	 */
+	@Autowired
+	ReservasDAO reservasDAO;
+
+	@Override
+	public List<Reservas> listasReservas() {
+		// Listar todas las reservas.
+		return reservasDAO.findAll();
+	}
+
+	@Override
+	public Reservas buscarReservaXIdentificador(Long id) {
+		// Buscar reserva de equipo.
+		return reservasDAO.findById(id).get();
+	}
+
+	@Override
+	public Reservas crearNuevaReserva(Reservas reservas) {
+		// Crear una nueva reserva.
+		return reservasDAO.save(reservas);
+	}
+
+	@Override
+	public Reservas modificarReservaExistente(Reservas reservas) {
+		// Modificar una reserva existente.
+		return reservasDAO.save(reservas);
+	}
+
+	@Override
+	public void eliminarReservaExistente(Long id) {
+		// Eliminar reserva existente
+		reservasDAO.deleteById(id);
+		
+	}
+
+}
+	
+  ```
+	
+</details>
+
+	
+	
+	
+<details>
+	
+   <summary>Códigio generado en InvestigadoresServicesImpl</summary>
+	
+   <br>
+	
+  ```java
+package com.crud.spring.services;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.crud.spring.dao.InvestigadoresDAO;
+import com.crud.spring.dto.Investigadores;
+
+@Service
+/**
+ * Se implementan los métodos de la interfaz @InvestigadoresServices. Se utiliza
+ * la anotación @Service para indicar que esta clase pertenece a la capa de
+ * servicios
+ */
+public class InvestigadoresServicesImpl implements InvestigadoresServices {
+
+	/**
+	 * Se utiliza la anotación @Autowired para inyectar las dependencias del
+	 * JpaRepository heredado en @InvestigadoresDAO.
+	 */
+	@Autowired
+	InvestigadoresDAO investigadoresDAO;
+
+	@Override
+	public List<Investigadores> listarInvestigadores() {
+		// Listar todos los investigadores.
+		return investigadoresDAO.findAll();
+	}
+
+	@Override
+	public Investigadores buscarInvestigadorXIdentificador(Long id) {
+		// Buscar investigador por identificador.
+		return investigadoresDAO.findById(id).get();
+	}
+
+	@Override
+	public Investigadores crearNuevoInvestigador(Investigadores investigadores) {
+		// Crear un nuevo investigador.
+		return investigadoresDAO.save(investigadores);
+	}
+
+	@Override
+	public Investigadores modificarInvestigadorExistente(Investigadores investigadores) {
+		// Modificar un investigador existente.
+		return investigadoresDAO.save(investigadores);
+	}
+
+	@Override
+	public void eliminarInvestigadorExistente(Long id) {
+		// Eliminar un investigador existente.
+		investigadoresDAO.deleteById(id);
+		System.out.println("Se ha eliminado el investigador satisfactoriamente");
+
+	}
+
+}
+	
+  ```
+	
+</details>
+	
+	
+<details>
+	
+   <summary>Códigio generado en EquiposServicesImpl</summary>
+	
+   <br>
+	
+  ```java
+package com.crud.spring.services;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.crud.spring.dao.EquiposDAO;
+import com.crud.spring.dto.Equipos;
+
+@Service
+/**
+ * Se implementan los métodos de la interfaz @EquiposServices. Se utiliza la
+ * anotación @Service para indicar que esta clase pertenece a la capa de
+ * servicios
+ */
+public class EquiposServicesImpl implements EquiposServices {
+
+	/**
+	 * Se utiliza la anotación @Autowired para inyectar las dependencias del
+	 * JpaRepository heredado en EquiposDAO.
+	 */
+	@Autowired
+	EquiposDAO equiposDAO;
+
+	@Override
+	public List<Equipos> listarEquipos() {
+		// Listar todos los equipos.
+		return equiposDAO.findAll();
+	}
+
+	@Override
+	public Equipos buscarEquipoXIdentificador(Long id) {
+		// Buscar equipo por ID.
+		return equiposDAO.findById(id).get();
+	}
+
+	@Override
+	public Equipos crearNuevoEquipo(Equipos equipos) {
+		// Crear un nuevo equipo.
+		return equiposDAO.save(equipos);
+	}
+
+	@Override
+	public Equipos modificarEquipoExistente(Equipos equipos) {
+		// Modificar equipo existente.
+		return equiposDAO.save(equipos);
+	}
+
+	@Override
+	public void eliminarEquipoExistente(Long id) {
+		// Eliminar equipo existente.
+		equiposDAO.deleteById(id);
+		System.out.println("Se ha eliminado el equipo satisfactoriamente");
+
+	}
+
+}
+	
+  ```
+	
+</details>
+	
+	
+<details>
+	
+   <summary>Códigio generado en ReservasServicesImpl</summary>
+	
+   <br>
+	
+  ```java
+package com.crud.spring.services;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.crud.spring.dao.ReservasDAO;
+import com.crud.spring.dto.Reservas;
+
+@Service
+/**
+ * Se implementan los métodos de la interfaz @FacultadServices. Se utiliza la
+ * anotación @Service para indicar que esta clase pertenece a la capa de
+ * servicios
+ */
+public class ReservasServicesImpl implements ReservasServices {
+
+	/**
+	 * Se utiliza la anotación @Autowired para inyectar las dependencias del
+	 * JpaRepository heredado en @ReservasDAO.
+	 */
+	@Autowired
+	ReservasDAO reservasDAO;
+
+	@Override
+	public List<Reservas> listasReservas() {
+		// Listar todas las reservas.
+		return reservasDAO.findAll();
+	}
+
+	@Override
+	public Reservas buscarReservaXIdentificador(Long id) {
+		// Buscar reserva de equipo.
+		return reservasDAO.findById(id).get();
+	}
+
+	@Override
+	public Reservas crearNuevaReserva(Reservas reservas) {
+		// Crear una nueva reserva.
+		return reservasDAO.save(reservas);
+	}
+
+	@Override
+	public Reservas modificarReservaExistente(Reservas reservas) {
+		// Modificar una reserva existente.
+		return reservasDAO.save(reservas);
+	}
+
+	@Override
+	public void eliminarReservaExistente(Long id) {
+		// Eliminar reserva existente
+		reservasDAO.deleteById(id);
+		
+	}
+}
+	
+  ```
+	
 </details>
