@@ -15,7 +15,7 @@ import com.crud.spring.dto.Reservas;
 import com.crud.spring.services.ReservasServicesImpl;
 
 @RestController
-@RequestMapping("/aplicacion")
+@RequestMapping("/api")
 
 public class ReservasController {
 
@@ -24,36 +24,35 @@ public class ReservasController {
 	ReservasServicesImpl reservasServicesImpl;
 	
 	/** Listar todas las reservas */
-	@GetMapping("/listar/reservas")
+	@GetMapping("/reservas")
 	public List<Reservas> listarReservas(){
 		return reservasServicesImpl.listasReservas();
 	}
 	
 	/** Buscar una reserva por identificador */
-	@GetMapping("/buscar/reserva/dni/{id}")
-	public Reservas buscarReservaXIdentificador(@PathVariable (name = "id") String dni) {
-		return reservasServicesImpl.buscarReservaXIdentificadorInvestigadores(dni);
+	@GetMapping("/reservas/{id}")
+	public Reservas buscarReservaXIdentificador(@PathVariable (name = "id") Long id) {
+		return reservasServicesImpl.buscarReservaXIdentificador(id);
 	}
 	
 	/** Crear una nueva reserva */
-	@PostMapping("/crear/reserva")
+	@PostMapping("/reservas")
 	public Reservas crearNuevaReserva(@RequestBody Reservas reservas) {
 		return reservasServicesImpl.crearNuevaReserva(reservas);
 	}
 	
 	/** Modificar una reserva existente */
-	@PutMapping("/modificar/reserva/{id}")
-	public Reservas modificarReservaExistente(@PathVariable (name = "id") String dni , @RequestBody Reservas reservas) {
+	@PutMapping("/reservas/{id}")
+	public Reservas modificarReservaExistente(@PathVariable (name = "id") Long id , @RequestBody Reservas reservas) {
 		/** Instancias de la clase Reservas */
 		Reservas reserva_a_modificar = new Reservas();
 		Reservas modificacion = new Reservas();
 		
 		/** Se recoge una reserva */
-		reserva_a_modificar = reservasServicesImpl.buscarReservaXIdentificadorInvestigadores(dni);
+		reserva_a_modificar = reservasServicesImpl.buscarReservaXIdentificador(id);
 		
 		/** Se modifican sus valores */
-		reserva_a_modificar.setDni(reservas.getDni());
-		reserva_a_modificar.setNumSerie(reservas.getNumSerie());
+		reserva_a_modificar.setId(reservas.getId());
 		reserva_a_modificar.setComienzo(reservas.getComienzo());
 		reserva_a_modificar.setFin(reservas.getFin());
 		reserva_a_modificar.setInvestigadores(reservas.getInvestigadores());
@@ -68,8 +67,8 @@ public class ReservasController {
 	
 	/** Se elimina una reserva */
 	@DeleteMapping("/eliminar/reservas/{id}")
-	public void eliminarReservas(@PathVariable (name = "id") String dni) {
-		reservasServicesImpl.eliminarReservaExistenteInvestigadores(dni);
+	public void eliminarReservas(@PathVariable (name = "id") Long id) {
+		reservasServicesImpl.eliminarReservaExistente(id);
 	}
 	
 }

@@ -28,9 +28,9 @@ public class EquiposServicesImpl implements EquiposServices {
 	}
 
 	@Override
-	public Equipos buscarEquipoXIdentificador(String numSerie) {
+	public Equipos buscarEquipoXIdentificador(Long id) {
 		// Buscar equipo por ID.
-		return equiposDAO.findById(numSerie).get();
+		return equiposDAO.findById(id).get();
 	}
 
 	@Override
@@ -46,9 +46,9 @@ public class EquiposServicesImpl implements EquiposServices {
 	}
 
 	@Override
-	public void eliminarEquipoExistente(String numSerie) {
+	public void eliminarEquipoExistente(Long id) {
 		// Eliminar equipo existente.
-		equiposDAO.deleteById(numSerie);
+		equiposDAO.deleteById(id);
 		System.out.println("Se ha eliminado el equipo satisfactoriamente");
 
 	}

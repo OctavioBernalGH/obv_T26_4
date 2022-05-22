@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.crud.spring.dto.Equipos;
 
 @Repository
-public interface EquiposDAO extends JpaRepository<Equipos, String> {
+public interface EquiposDAO extends JpaRepository<Equipos, Long> {
 
 	/**
 	 * Se heredan los métodos CRUD básicos de la clase JpaRepository se utiliza un

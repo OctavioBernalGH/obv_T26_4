@@ -28,9 +28,9 @@ public class FacultadServicesImpl implements FacultadServices {
 	}
 
 	@Override
-	public Facultad buscarFacultadXIdentificador(Integer codigo) {
+	public Facultad buscarFacultadXIdentificador(Long id) {
 		// Buscar facultad por identificador.
-		return facultadDAO.findById(codigo).get();
+		return facultadDAO.findById(id).get();
 	}
 
 	@Override
@@ -46,9 +46,9 @@ public class FacultadServicesImpl implements FacultadServices {
 	}
 
 	@Override
-	public void eliminarFacultadExistente(Integer codigo) {
+	public void eliminarFacultadExistente(Long id) {
 		// Eliminar una facultad existente.
-		facultadDAO.deleteById(codigo);
+		facultadDAO.deleteById(id);
 		System.out.println("Se ha eliminado la facultad satisfactoriamente");
 
 	}

@@ -3,6 +3,8 @@ package com.crud.spring.dto;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -11,22 +13,17 @@ import javax.persistence.Table;
 /** Se define como una entidad y se relaciona con una tabla llamada reservas */
 @Entity
 @Table(name = "reservas")
-public class Reservas {
+public class Reservas{
 
 	/** Se define que el campo Id hará referencia al atributo dni */
 	@Id
-	@Column(name = "dni")
-	private String dni;
-
-	/** Se define que el campo Id hará referencia al atributo numSerie */
-	@Id
-	@Column(name = "numSerie")
-	private String numSerie;
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	/**
-	 * Se define que la columna comienzo hace referencia al atributo comienzo en la
+	 * Se define que la columna comienzo hace referencia al atributo dni en la
 	 * clase actual.
 	 */
+
 	@Column(name = "comienzo")
 	private Date comienzo;
 
@@ -42,7 +39,7 @@ public class Reservas {
 	 * columna de la clave foranea fk_investigadores.
 	 */
 	@ManyToOne
-	@JoinColumn(name = "fk_investigadores")
+	@JoinColumn(name = "fk_id_investigador")
 	private Investigadores investigadores;
 
 	/**
@@ -50,7 +47,7 @@ public class Reservas {
 	 * de la clave foranea fk_equipos.
 	 */
 	@ManyToOne
-	@JoinColumn(name = "fk_equipos")
+	@JoinColumn(name = "fk_id_equipo")
 	private Equipos equipos;
 
 	/** Constructor vacío */
@@ -58,20 +55,15 @@ public class Reservas {
 	}
 
 	/**
-	 * Constructor con todos los atributos de clase y con las relaciones
-	 * 
-	 * @param dni
-	 * @param numSerie
+	 * @param id
 	 * @param comienzo
 	 * @param fin
 	 * @param investigadores
 	 * @param equipos
 	 */
-	public Reservas(String dni, String numSerie, Date comienzo, Date fin, Investigadores investigadores,
-			Equipos equipos) {
+	public Reservas(Long id, Date comienzo, Date fin, Investigadores investigadores, Equipos equipos) {
 		super();
-		this.dni = dni;
-		this.numSerie = numSerie;
+		this.id = id;
 		this.comienzo = comienzo;
 		this.fin = fin;
 		this.investigadores = investigadores;
@@ -79,31 +71,17 @@ public class Reservas {
 	}
 
 	/**
-	 * @return the dni
+	 * @return the id
 	 */
-	public String getDni() {
-		return dni;
+	public Long getId() {
+		return id;
 	}
 
 	/**
-	 * @param dni the dni to set
+	 * @param id the id to set
 	 */
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-
-	/**
-	 * @return the numSerie
-	 */
-	public String getNumSerie() {
-		return numSerie;
-	}
-
-	/**
-	 * @param numSerie the numSerie to set
-	 */
-	public void setNumSerie(String numSerie) {
-		this.numSerie = numSerie;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	/**
@@ -161,7 +139,7 @@ public class Reservas {
 	public void setEquipos(Equipos equipos) {
 		this.equipos = equipos;
 	}
-	
-	
+
+
 
 }

@@ -10,7 +10,7 @@ public interface EquiposServices {
 	public List<Equipos> listarEquipos();
 
 	/** Método para buscar un equipo por ID */
-	public Equipos buscarEquipoXIdentificador(String numSerie);
+	public Equipos buscarEquipoXIdentificador(Long id);
 
 	/** Método para crear un nuevo equipo */
 	public Equipos crearNuevoEquipo(Equipos equipos);
@@ -19,6 +19,6 @@ public interface EquiposServices {
 	public Equipos modificarEquipoExistente(Equipos equipos);
 
 	/** Método para eliminar un equipo ya existente */
-	public void eliminarEquipoExistente(String numSerie);
+	public void eliminarEquipoExistente(Long id);
 
 }

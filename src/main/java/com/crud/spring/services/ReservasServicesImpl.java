@@ -30,15 +30,9 @@ public class ReservasServicesImpl implements ReservasServices {
 	}
 
 	@Override
-	public Reservas buscarReservaXIdentificadorInvestigadores(String dni) {
-		// Buscar reserva de investigador.
-		return reservasDAO.findById(dni).get();
-	}
-
-	@Override
-	public Reservas buscarReservaXIdentificadorEquipos(String numSerie) {
+	public Reservas buscarReservaXIdentificador(Long id) {
 		// Buscar reserva de equipo.
-		return reservasDAO.findById(numSerie).get();
+		return reservasDAO.findById(id).get();
 	}
 
 	@Override
@@ -54,10 +48,11 @@ public class ReservasServicesImpl implements ReservasServices {
 	}
 
 	@Override
-	public void eliminarReservaExistenteInvestigadores(String dni) {
-		// Eliminar reserva existente investigadores.
-		reservasDAO.deleteById(dni);
-
+	public void eliminarReservaExistente(Long id) {
+		// Eliminar reserva existente
+		reservasDAO.deleteById(id);
+		
 	}
+
 
 }

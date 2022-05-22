@@ -4,6 +4,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,20 +24,29 @@ public class Investigadores {
 
 	/** Se define que el campo Id hará referencia al atributo dni */
 	@Id
-	@Column(name = "dni")
-	private String dni;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	/**
 	 * Se define que la columna nombre_apels hace referencia al atributo nombreApels
 	 * en la clase actual.
 	 */
+
 	@Column(name = "nomApels")
 	private String nomApels;
 
 	/**
+	 * Se define que la columna nombre_apels hace referencia al atributo dni en la
+	 * clase actual.
+	 */
+
+	@Column(name = "dni")
+	private String dni;
+	/**
 	 * Se genera una relación many to one con la tabla facultad mediante la columna
 	 * de la clave foranea fk_facultad.
 	 */
+
 	@ManyToOne
 	@JoinColumn(name = "fk_facultad")
 	private Facultad facultad;
@@ -44,6 +55,7 @@ public class Investigadores {
 	 * Se genera una relación one to many con la tabla reserva teniendo como
 	 * referencia el identificador de esta clase.
 	 */
+
 	@OneToMany
 	@JoinColumn(name = "dni")
 	private List<Reservas> reservas;
@@ -52,18 +64,19 @@ public class Investigadores {
 	public Investigadores() {
 	}
 
+	
 	/**
-	 * Constructor completo incluyendo las relaciones entre tablas.
-	 * 
+	 * @param id
+	 * @param nomApels
 	 * @param dni
-	 * @param nombreApels
 	 * @param facultad
 	 * @param reservas
 	 */
-	public Investigadores(String dni, String nomApels, Facultad facultad, List<Reservas> reservas) {
+	public Investigadores(Long id, String nomApels, String dni, Facultad facultad, List<Reservas> reservas) {
 		super();
-		this.dni = dni;
+		this.id = id;
 		this.nomApels = nomApels;
+		this.dni = dni;
 		this.facultad = facultad;
 		this.reservas = reservas;
 	}
@@ -82,19 +95,6 @@ public class Investigadores {
 		this.dni = dni;
 	}
 
-	/**
-	 * @return the nombreApels
-	 */
-	public String getNombreApels() {
-		return nomApels;
-	}
-
-	/**
-	 * @param nombreApels the nombreApels to set
-	 */
-	public void setNombreApels(String nomApels) {
-		this.nomApels = nomApels;
-	}
 
 	/**
 	 * @return the facultad
@@ -129,5 +129,39 @@ public class Investigadores {
 	public void setReservas(List<Reservas> reservas) {
 		this.reservas = reservas;
 	}
+
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	/**
+	 * @return the nomApels
+	 */
+	public String getNomApels() {
+		return nomApels;
+	}
+
+
+	/**
+	 * @param nomApels the nomApels to set
+	 */
+	public void setNomApels(String nomApels) {
+		this.nomApels = nomApels;
+	}
+	
+	
 
 }

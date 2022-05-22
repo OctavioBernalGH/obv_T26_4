@@ -28,9 +28,9 @@ public class InvestigadoresServicesImpl implements InvestigadoresServices {
 	}
 
 	@Override
-	public Investigadores buscarInvestigadorXIdentificador(String dni) {
+	public Investigadores buscarInvestigadorXIdentificador(Long id) {
 		// Buscar investigador por identificador.
-		return investigadoresDAO.findById(dni).get();
+		return investigadoresDAO.findById(id).get();
 	}
 
 	@Override
@@ -46,9 +46,9 @@ public class InvestigadoresServicesImpl implements InvestigadoresServices {
 	}
 
 	@Override
-	public void eliminarInvestigadorExistente(String dni) {
+	public void eliminarInvestigadorExistente(Long id) {
 		// Eliminar un investigador existente.
-		investigadoresDAO.deleteById(dni);
+		investigadoresDAO.deleteById(id);
 		System.out.println("Se ha eliminado el investigador satisfactoriamente");
 
 	}

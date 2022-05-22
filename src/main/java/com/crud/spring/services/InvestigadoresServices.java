@@ -10,7 +10,7 @@ public interface InvestigadoresServices {
 	public List<Investigadores> listarInvestigadores();
 
 	/** Método para buscar un investigador por ID */
-	public Investigadores buscarInvestigadorXIdentificador(String dni);
+	public Investigadores buscarInvestigadorXIdentificador(Long id);
 
 	/** Método para crear un investigador */
 	public Investigadores crearNuevoInvestigador(Investigadores investigadores);
@@ -19,5 +19,5 @@ public interface InvestigadoresServices {
 	public Investigadores modificarInvestigadorExistente(Investigadores investigadores);
 
 	/** Método para eliminar un investigador ya existente */
-	public void eliminarInvestigadorExistente(String dni);
+	public void eliminarInvestigadorExistente(Long id);
 }

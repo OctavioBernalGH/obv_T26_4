@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.crud.spring.dto.Investigadores;
 
 @Repository
-public interface InvestigadoresDAO extends JpaRepository<Investigadores, String>{
+public interface InvestigadoresDAO extends JpaRepository<Investigadores, Long>{
 
 	/**
 	 * Se heredan los métodos CRUD básicos de la clase JpaRepository se utiliza un

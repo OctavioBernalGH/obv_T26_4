@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,8 +21,8 @@ public class Equipos {
 
 	/** Se define que el campo Id hará referencia al atributo numSerie */
 	@Id
-	@Column(name = "numSerie")
-	private char numSerie;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	/**
 	 * Se define que la columna nombre hace referencia al atributo nombre en la
@@ -29,6 +31,9 @@ public class Equipos {
 	@Column(name = "nombre")
 	private String nombre;
 
+	@Column(name = "numSerie")
+	private String numSerie;
+	
 	/**
 	 * Se genera una relación many to one con la tabla facultad mediante la columna
 	 * de la clave foranea fk_facultad.
@@ -42,39 +47,44 @@ public class Equipos {
 	 * referencia el identificador de esta clase.
 	 */
 	@OneToMany
-	@JoinColumn(name = "numSerie")
+	@JoinColumn(name = "id")
 	private List<Reservas> reservas;
 
 	/** Constructor vacío */
 	public Equipos() {
 	}
 
+
+
 	/**
-	 * Constructor con todos los atributos propios y con el atributo relacional de
-	 * one to many.
-	 * 
-	 * @param numSerie
+	 * @param id
 	 * @param nombre
+	 * @param numSerie
+	 * @param facultad
 	 * @param reservas
 	 */
-	public Equipos(char numSerie, String nombre, Facultad facultad, List<Reservas> reservas) {
-		this.numSerie = numSerie;
+	public Equipos(Long id, String nombre, String numSerie, Facultad facultad, List<Reservas> reservas) {
+		super();
+		this.id = id;
 		this.nombre = nombre;
+		this.numSerie = numSerie;
 		this.facultad = facultad;
 		this.reservas = reservas;
 	}
 
+
+
 	/**
 	 * @return the numSerie
 	 */
-	public char getNumSerie() {
+	public String getNumSerie() {
 		return numSerie;
 	}
 
 	/**
 	 * @param numSerie the numSerie to set
 	 */
-	public void setNumSerie(char numSerie) {
+	public void setNumSerie(String numSerie) {
 		this.numSerie = numSerie;
 	}
 
@@ -124,5 +134,22 @@ public class Equipos {
 	public void setReservas(List<Reservas> reservas) {
 		this.reservas = reservas;
 	}
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 
 }

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.crud.spring.dto.Facultad;
 
 @Repository
-public interface FacultadDAO extends JpaRepository<Facultad, Integer>{
+public interface FacultadDAO extends JpaRepository<Facultad, Long>{
 
 	/**
 	 * Se heredan los métodos CRUD básicos de la clase JpaRepository se utiliza un

@@ -10,7 +10,7 @@ public interface FacultadServices {
 	public List<Facultad> listarFacultades();
 
 	/** Método para buscar una facultad por ID */
-	public Facultad buscarFacultadXIdentificador(Integer codigo);
+	public Facultad buscarFacultadXIdentificador(Long id);
 
 	/** Método para crear una nueva facultad */
 	public Facultad crearFacultad(Facultad facultad);
@@ -19,5 +19,5 @@ public interface FacultadServices {
 	public Facultad modificarFacultadExistente(Facultad facultad);
 
 	/** Método para eliminar una facultad ya existente */
-	public void eliminarFacultadExistente(Integer codigo);
+	public void eliminarFacultadExistente(Long id);
 }

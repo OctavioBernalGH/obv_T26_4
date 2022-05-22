@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -25,8 +27,8 @@ public class Facultad {
 	 * como incremental automático aquí.
 	 */
 	@Id
-	@Column(name = "codigo")
-	private Integer codigo;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	/**
 	 * Se define que la columna nombre hace referencia al atributo nombre en la
@@ -40,7 +42,7 @@ public class Facultad {
 	 * realiza mediante la columna codigo (identificador de esta entidad).
 	 */
 	@OneToMany
-	@JoinColumn(name = "codigo")
+	@JoinColumn(name = "id")
 	private List<Investigadores> investigadores;
 
 	/**
@@ -48,41 +50,43 @@ public class Facultad {
 	 * mediante la columna codigo (identificador de esta entidad).
 	 */
 	@OneToMany
-	@JoinColumn(name = "codigo")
+	@JoinColumn(name = "id")
 	private List<Equipos> equipos;
 
 	/** Constructor vacío */
 	public Facultad() {
 	}
 
+
+
 	/**
-	 * Constructor con todos los atributos incluyendo las relaciones con las otras
-	 * entidades.
-	 * 
-	 * @param codigo
+	 * @param id
 	 * @param nombre
 	 * @param investigadores
 	 * @param equipos
 	 */
-	public Facultad(Integer codigo, String nombre, List<Investigadores> investigadores, List<Equipos> equipos) {
-		this.codigo = codigo;
+	public Facultad(Long id, String nombre, List<Investigadores> investigadores, List<Equipos> equipos) {
+		super();
+		this.id = id;
 		this.nombre = nombre;
 		this.investigadores = investigadores;
 		this.equipos = equipos;
 	}
 
+
+
 	/**
 	 * @return the codigo
 	 */
-	public Integer getCodigo() {
-		return codigo;
+	public Long getId() {
+		return id;
 	}
 
 	/**
 	 * @param codigo the codigo to set
 	 */
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	/**

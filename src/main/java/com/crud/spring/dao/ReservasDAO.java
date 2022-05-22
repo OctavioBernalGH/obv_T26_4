@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.crud.spring.dto.Reservas;
 
 @Repository
-public interface ReservasDAO extends JpaRepository<Reservas, String>{
+public interface ReservasDAO extends JpaRepository<Reservas, Long>{
 
 	/**
 	 * Se heredan los métodos CRUD básicos de la clase JpaRepository se utiliza un
