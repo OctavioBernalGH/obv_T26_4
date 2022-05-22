@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -32,7 +31,7 @@ public class Investigadores {
 	 * en la clase actual.
 	 */
 
-	@Column(name = "nomApels")
+	@Column(name = "nom_apels")
 	private String nomApels;
 
 	/**

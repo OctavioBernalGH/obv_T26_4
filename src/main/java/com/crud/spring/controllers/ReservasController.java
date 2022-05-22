@@ -66,7 +66,7 @@ public class ReservasController {
 	}
 	
 	/** Se elimina una reserva */
-	@DeleteMapping("/eliminar/reservas/{id}")
+	@DeleteMapping("/reservas/{id}")
 	public void eliminarReservas(@PathVariable (name = "id") Long id) {
 		reservasServicesImpl.eliminarReservaExistente(id);
 	}

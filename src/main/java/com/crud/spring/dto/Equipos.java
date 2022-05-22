@@ -1,7 +1,6 @@
 package com.crud.spring.dto;
 
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,7 +30,7 @@ public class Equipos {
 	@Column(name = "nombre")
 	private String nombre;
 
-	@Column(name = "numSerie")
+	@Column(name = "num_serie")
 	private String numSerie;
 	
 	/**
